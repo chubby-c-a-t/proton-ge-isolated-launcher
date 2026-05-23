@@ -22,7 +22,7 @@ This approach is relevant when handling untrusted binaries or installers from un
 
 ## Security Context
 
-Threat actors occasionally distribute trojanized versions of legitimate Windows software, such as modified versions of Notepad++. Executing such binaries inside a sandboxed Proton-GE environment significantly mitigates the risk of host compromise. This project demonstrates an automated method for isolating such executables.
+Threat actors occasionally distribute trojanised versions of legitimate Windows software, such as modified versions of Notepad++. Executing such binaries inside a sandboxed Proton-GE environment significantly mitigates the risk of host compromise. This project demonstrates an automated method for isolating such executables.
 
 ---
 
@@ -35,10 +35,10 @@ Before utilising the script, the following prerequisites are as follows:
    flatpak install flathub com.usebottles.bottles
    ```
 
-2. **Proton-GE is installed into Bottles Flatpak via ProtonUp-Qt:**  
+2. **Proton-GE is installed into Bottles Flatpak (e.g. via ProtonUp-Qt):**  
    This ensures the runner exists within the Bottles Flatpak data directory. The script dynamically locates the latest version, of GE-Proton.
 
-3. **Bottles initialization:**  
+3. **Bottles initialisation:**  
    You must manually create at least one bottle via the graphical interface first, allowing Bottles to initialise its internal directory structure.
 
 4. **Target accessibility:**  
@@ -72,7 +72,7 @@ The current script hardcodes the prefix directory to ensure compatibility with B
 
 ### **Figure 1: Verified Execution**
 
-This screenshot demonstrates the successful execution of notepad++.exe utilizing the GE-Proton10-34 runner. The script successfully parses the file path, assigns the prefix name *notepad*, and launches the application securely through the bottles-cli.
+This screenshot demonstrates the successful execution of notepad++.exe utilising the GE-Proton10-34 runner. The script successfully parses the file path, assigns the prefix name *notepad*, and launches the application securely through the bottles-cli.
 
 ![Figure 1 — notepadpp-sandboxed](notepadpp-sandboxed.png)
 
