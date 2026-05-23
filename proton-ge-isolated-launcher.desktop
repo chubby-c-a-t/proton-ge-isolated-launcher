@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Proton-GE Bottles Sandbox (Template)
+Comment=Template only. Requires manual path adjustment.
+Exec=/path/to/proton-ge-isolated-launcher.sh %f
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-sharedlib;
+NoDisplay=false
+Terminal=true
+Categories=Utility;
