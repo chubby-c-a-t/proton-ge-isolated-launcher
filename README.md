@@ -1,5 +1,5 @@
 # Proton-GE Isolated Launcher  
-**Portfolio Project — Security Research & Automation**
+**Portfolio Project - Security Research & Automation**
 
 This repository is part of my cybersecurity portfolio. It demonstrates sandboxing, isolation, and secure execution environments on Linux using Proton-GE and Bottles via Flatpak. It is not intended for general distribution, production use, or as a supported tool.
 
@@ -7,14 +7,14 @@ This repository is part of my cybersecurity portfolio. It demonstrates sandboxin
 
 ## Purpose
 
-This project explores how to run untrusted Windows executables inside an isolated environment using:
+This project explores how to run untrusted Windows executables on Linux inside an isolated environment using:
 
 - Proton-GE  
 - Bottles (Flatpak)  
 - Flatpak sandboxing  
 - Per-application Wine prefixes  
 
-The primary objective is to reduce the host attack surface by ensuring each executable is jailed within its own discrete Wine prefix with restricted filesystem access.
+The primary objective is to reduce the host attack surface by ensuring each executable is jailed within its own discrete Wine prefix with restricted filesystem access, while also offering convenience as applications can be run by a simple right-click via the GUI if the .desktop file is configured and prefixes are automatically generated with sensible naming based on the executable filename, as implemented by this script. Proton-GE was utilised as it offers high compatibility when running Windows software on Linux, especially for niche applications in some cases over vanilla Wine.
 
 This approach is relevant when handling untrusted binaries or installers from unknown sources. It can increase security when running potentially trojanised software downloaded from unofficial sources.
 
