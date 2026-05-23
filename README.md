@@ -14,9 +14,9 @@ This project explores how to run untrusted Windows executables inside an isolate
 - Flatpak sandboxing  
 - Per-application Wine prefixes  
 
-The primary objective is to reduce the host attack surface by ensuring each executable is jailed within its own discrete Wine prefix with severely restricted filesystem access.
+The primary objective is to reduce the host attack surface by ensuring each executable is jailed within its own discrete Wine prefix with restricted filesystem access.
 
-This approach is highly relevant when handling untrusted binaries, unknown installers, or potentially trojanized software downloaded from unofficial sources.
+This approach is relevant when handling untrusted binaries or installers from unknown sources. It can increase security when running potentially trojanised software downloaded from unofficial sources.
 
 ---
 
@@ -28,18 +28,18 @@ Threat actors occasionally distribute trojanized versions of legitimate Windows 
 
 ## Requirements
 
-Before utilizing the script, ensure the following prerequisites are met:
+Before utilising the script, the following prerequisites are as follows:
 
 1. **Flatpak Bottles is installed:**
    ```bash
    flatpak install flathub com.usebottles.bottles
    ```
 
-2. **Proton-GE is installed via ProtonUp-Qt:**  
-   This ensures the runner exists within the Bottles Flatpak data directory. The script dynamically locates the latest version, such as GE-Proton10-34.
+2. **Proton-GE is installed into Bottles Flatpak via ProtonUp-Qt:**  
+   This ensures the runner exists within the Bottles Flatpak data directory. The script dynamically locates the latest version, of GE-Proton.
 
 3. **Bottles initialization:**  
-   You must manually create at least one bottle via the graphical interface first, allowing Bottles to initialize its internal directory structure.
+   You must manually create at least one bottle via the graphical interface first, allowing Bottles to initialise its internal directory structure.
 
 4. **Target accessibility:**  
    The executable intended for execution must reside in a location accessible to the Bottles Flatpak.
@@ -48,23 +48,23 @@ Before utilizing the script, ensure the following prerequisites are met:
 
 ## Technical Implementation & Prefix Directory
 
-The provided `proton-ge-isolated-launcher.sh` script automates the creation of isolated execution environments. It stores isolated Wine prefixes strictly inside the default Bottles Flatpak directory:
+The provided `proton-ge-isolated-launcher.sh` script automates the creation of isolated execution environments. It stores isolated Wine prefixes inside the default Bottles Flatpak directory:
 
 ```bash
 $HOME/.var/app/com.usebottles.bottles/data/bottles/bottles
 ```
 
-This specific location is utilized because it is natively accessible to the Bottles Flatpak sandbox, meaning no manual Flatpak permission changes are required.
+This specific location is utilised because it is natively accessible to the Bottles Flatpak sandbox, meaning no manual Flatpak permission changes should be required.
 
 The automation script executes the following logic:
 
 - Detects the appropriate Proton-GE runner dynamically.  
-- Extracts the executable filename to generate a sanitized, filesystem-safe prefix name.  
-- Creates a new prefix using the strict long-flags of bottles-cli (`--bottle-name`, `--environment application`, `--runner`) only if the prefix does not already exist, preventing unintended overwrites.  
+- Extracts the executable filename to generate a sanitised, filesystem-safe and easily comprehendible prefix name.  
+- Creates a new prefix using the long-flags of bottles-cli (`--bottle-name`, `--environment application`, `--runner`) only if the prefix does not already exist, preventing unintended overwrites.  
 - Launches the executable securely inside the Flatpak sandbox.
 
-**Note regarding customizations:**  
-Unlike previous iterations, the current script hardcodes the prefix directory to ensure strict compatibility with Flatpak permissions. If overriding the prefix path is required, the script must be manually modified, and the new directory must be explicitly permitted via Flatseal or `--filesystem=` flags.
+**Note regarding customisations:**  
+The current script hardcodes the prefix directory to ensure compatibility with Bottle's Flatpak permissions. If overriding the prefix path is required, the script must be manually modified, and the new directory explicitly permitted.
 
 ---
 
@@ -102,13 +102,13 @@ For operational convenience, a template desktop entry file is provided:
 proton-ge-isolated-launcher.desktop
 ```
 
-This file requires manual adjustment of the `Exec=` path (`/path/to/proton-ge-isolated-launcher.sh %f`) and is included to demonstrate how context-menu integration (e.g., “Right-Click to Sandbox”) can be established within a Linux desktop environment.
+This file requires manual adjustment of the `Exec=` path (`/path/to/proton-ge-isolated-launcher.sh %f`) and is included to demonstrate how context-menu integration (e.g. “Right-Click to Sandbox”) can be established within a Linux desktop environment to offer convenience running Window's executable files.
 
 ---
 
 ## AI-Assistance Transparency
 
-AI tools were utilized to assist in the rapid development of the accompanying bash script. All logic, including CLI syntax regression troubleshooting, was reviewed, tested, and validated manually.
+AI tools were utilised to assist in the development of the accompanying bash script. All logic was reviewed and validated manually.
 
 ---
 
